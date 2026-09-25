@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Noor’s Constellation</title>
+<meta name="description" content="EverAtlas Constellation prototype: an atlas of one person’s life, built from fictional sample content.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="css/constellation.css">
+</head>
+<body>
+<a class="skip" href="#text">Skip to the readable version</a>
+
+<header class="topbar">
+  <a class="brand" href="#atlas" aria-label="EverAtlas home">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 13c3-4 5 2 8-1s4-5 6-2" fill="none" stroke="#D5FF78" stroke-width="1.8" stroke-linecap="round"/></svg>
+    <span>EverAtlas</span>
+  </a>
+  <nav class="views" aria-label="Ways to explore this person">
+    <a href="#atlas"><span class="lg">Constellation</span><span class="sm">Map</span></a>
+    <a href="#text"><span class="lg">Read as text</span><span class="sm">Text</span></a>
+    <a href="#profile"><span class="lg">Profile page</span><span class="sm">Profile</span></a>
+  </nav>
+  <p class="sample-badge" title="All people, places and events here are invented."><span aria-hidden="true">◇</span> Fictional sample: <span id="sampleName">Noor Halvorsen</span></p>
+  <a class="owner-link" href="#studio"><span class="lg">Owner studio</span><span class="sm">Studio</span></a>
+</header>
+
+<main id="main">
+  <section id="view-atlas" class="view view-atlas" aria-label="Constellation map">
+    <div id="map" class="map"></div>
+
+    <aside id="panel" class="panel" aria-label="About this person"></aside>
+
+    <aside id="detail" class="detail" hidden aria-label="Experience details"></aside>
+
+    <div class="dock">
+      <div class="persp" role="group" aria-label="Perspective">
+        <button class="persp-btn" data-persp="soFar" aria-pressed="true"><span class="pb-title">Life so far</span><span class="pb-sub">total hours, roughly</span></button>
+        <button class="persp-btn" data-persp="now" aria-pressed="false"><span class="pb-title">Life now</span><span class="pb-sub">a typical week</span></button>
+      </div>
+      <p id="caption" class="caption"></p>
+    </div>
+
+    <div class="map-tools" role="toolbar" aria-label="Map controls">
+      <button id="keyBtn" class="tool" aria-expanded="false" aria-controls="legend"><span class="scale-sq" id="scaleSq" aria-hidden="true"></span><span class="tool-label">How to read <span class="scale-lbl" id="scaleLbl"></span></span></button>
+      <button id="routesBtn" class="tool" aria-pressed="false"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M3 15Q10 2 17 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 2"/><circle cx="3" cy="15" r="2" fill="currentColor"/><circle cx="17" cy="12" r="2" fill="currentColor"/></svg><span class="tool-label">Connections</span></button>
+      <button id="motionBtn" class="tool" aria-pressed="false"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M2 10c3-5 5 5 8 0s5 5 8 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="tool-label">Motion on</span></button>
+      <div class="zoom-row">
+      <button id="zoomOut" class="tool icon" aria-label="Zoom out">−</button>
+      <button id="zoomIn" class="tool icon" aria-label="Zoom in">+</button>
+      <button id="recenter" class="tool icon" aria-label="Fit the view"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      </div>
+    </div>
+
+    <div id="legend" class="legend" hidden role="dialog" aria-labelledby="legendTitle">
+      <div class="legend-head"><h2 id="legendTitle" tabindex="-1">How to read this map</h2><button id="keyClose" class="detail-close" aria-label="Close">×</button></div>
+      <ul class="legend-list">
+        <li><svg viewBox="0 0 40 30" width="40" height="30" aria-hidden="true"><path d="M6 15c0-8 10-11 18-9s12 7 10 12-10 9-18 8S6 22 6 15z" class="lg-land"/></svg><p><strong>Each island is a part of life.</strong> Its land area shows roughly how much time went into it. Time is not a measure of skill, success or importance.</p></li>
+        <li><svg viewBox="0 0 40 30" width="40" height="30" aria-hidden="true"><path d="M6 15c0-8 10-11 18-9s12 7 10 12-10 9-18 8S6 22 6 15z" class="lg-land"/><path d="M2 15c0-11 14-14 24-11s14 9 12 15-13 11-23 9S2 24 2 15z" class="lg-tide"/></svg><p><strong>Dotted shoreline:</strong> the island’s size in the other perspective, so you can see what changed.</p></li>
+        <li><svg viewBox="0 0 40 30" width="40" height="30" aria-hidden="true"><path d="M6 15c0-8 10-11 18-9s12 7 10 12-10 9-18 8S6 22 6 15z" class="lg-unknown"/></svg><p><strong>Hatched, dashed coast:</strong> no estimate shared. Drawn at a neutral size, not a guess.</p></li>
+        <li><svg viewBox="0 0 40 30" width="40" height="30" aria-hidden="true"><circle cx="20" cy="15" r="8" class="lg-rest"/></svg><p><strong>Dotted outline:</strong> resting for now. Very small shares are drawn at a minimum size and marked ◦ so they stay findable.</p></li>
+        <li><svg viewBox="0 0 40 30" width="40" height="30" aria-hidden="true"><circle cx="20" cy="15" r="6" class="lg-buoy"/><path d="M17 15h6M21 12l3 3-3 3" class="lg-buoy-a"/></svg><p><strong>Buoys offshore:</strong> what’s next, the things being worked toward.</p></li>
+        <li><span class="lg-square" aria-hidden="true"></span><p><strong>Scale:</strong> the small square next to “How to read” is how much land stands for 1,000 hours (life so far) or 1 hour a week (life now).</p></li>
+      </ul>
+      <h3 class="eyebrow">Places on each island</h3>
+      <p class="small">Earlier experiences sit inland; recent ones sit near the shore.</p>
+      <ul class="kind-list" id="kindList"></ul>
+      <h3 class="eyebrow">Keyboard</h3>
+      <p class="small">Tab moves between islands, and the arrow keys jump to a neighbouring island. Enter opens an island or a place. Escape steps back. Press T to switch perspective.</p>
+    </div>
+
+    <div id="live" class="sr-only" aria-live="polite"></div>
+  </section>
+
+  <section id="view-text" class="view view-doc" hidden aria-label="Readable version"></section>
+  <section id="view-profile" class="view view-doc" hidden aria-label="Profile page"></section>
+  <section id="view-studio" class="view view-doc view-studio" hidden aria-label="Owner studio"></section>
+</main>
+
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script src="js/data.js"></script>
+<script src="js/model.js"></script>
+<script src="js/atlas.js"></script>
+<script src="js/studio.js"></script>
+<script src="js/app.js"></script>
+<script>
+  document.getElementById('kindList').innerHTML = Object.keys(EA.KINDS).map(function (k) {
+    return '<li>' + EA.glyphHTML(k, 16) + '<span>' + EA.KINDS[k].label + '</span></li>';
+  }).join('');
+</script>
+</body>
+</html>
