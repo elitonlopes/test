@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ConstellationView, constellationHeadLinks } from "@/features/constellation/ConstellationView";
+import { ConstellationView } from "@/features/constellation/ConstellationView";
+import { constellationHeadLinks } from "@/features/constellation/head";
 import { getPublicSpace } from "@/lib/public-space.functions";
 
 export const Route = createFileRoute("/u/$username_/constellation")({
@@ -9,7 +10,8 @@ export const Route = createFileRoute("/u/$username_/constellation")({
     return space;
   },
   head: ({ loaderData }) => {
-    const profile = loaderData?.snapshot?.profile as { name?: string; headline?: string } | undefined;
+    const profile = loaderData?.snapshot?.profile as
+      { name?: string; headline?: string } | undefined;
     const name = profile?.name || loaderData?.username || "A person";
     const description = `Explore ${name}'s life as an atlas: work, interests, creations and what comes next.`;
     return {

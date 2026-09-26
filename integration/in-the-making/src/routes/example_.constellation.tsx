@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ConstellationView, constellationHeadLinks } from "@/features/constellation/ConstellationView";
+import { ConstellationView } from "@/features/constellation/ConstellationView";
+import { constellationHeadLinks } from "@/features/constellation/head";
 import { CONSTELLATION_EXAMPLE_SNAPSHOT } from "@/features/constellation/example-data";
 
-const description = "An example Constellation: one person's life as an atlas of work, interests, creations and connections.";
+const description =
+  "An example Constellation: one person's life as an atlas of work, interests, creations and connections.";
 
 export const Route = createFileRoute("/example_/constellation")({
   head: () => ({

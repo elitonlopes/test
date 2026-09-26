@@ -13,7 +13,7 @@ What it adds:
 | --- | --- |
 | `src/features/constellation/engine.js` | The map engine, mounted like `features/life/runtime.js` (`mountConstellation(root, data)` returns a cleanup). Safe to import during SSR. |
 | `src/features/constellation/adapter.ts` | Published snapshot → Constellation data. Roles, entries (grouped by `domain`, else category), songs, books; role → project links come from the profile. |
-| `src/features/constellation/ConstellationView.tsx` | React wrapper plus the head links (stylesheet and fonts). |
+| `src/features/constellation/ConstellationView.tsx`, `head.ts` | React wrapper, and the head links (stylesheet and fonts). |
 | `src/features/constellation/constellation.css` | Styles, all scoped to `.constellation-app`. |
 | `src/features/constellation/example-data.ts` | Fictional example (Noor Halvorsen) in the real snapshot format. |
 | `src/routes/u.$username_.constellation.tsx` | `/u/:username/constellation` |
